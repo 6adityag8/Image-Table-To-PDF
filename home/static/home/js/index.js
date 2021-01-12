@@ -99,8 +99,8 @@ function send_data_to_backend_to_create_pdf() {
                 display_error_message(res.error);
                 return;
             }
-            if (res.created_pdf_link) {
-                window.location.href = res.created_pdf_link;
+            if (res.created_pdf) {
+                window.open(MEDIA_URL + res.created_pdf);
             }
             else {
                 display_error_message('Something went wrong. Please try again.');
