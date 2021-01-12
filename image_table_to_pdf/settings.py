@@ -1,6 +1,7 @@
-import environ
 import os
 from pathlib import Path
+
+import environ
 
 # get root of the project
 root = environ.Path(__file__) - 1
@@ -18,7 +19,6 @@ SECRET_KEY = env.str('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='localhost').split()
-
 
 # Application definition
 
@@ -61,7 +61,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'image_table_to_pdf.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -71,7 +70,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -91,7 +89,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -104,7 +101,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
