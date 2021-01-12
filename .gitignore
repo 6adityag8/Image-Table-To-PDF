@@ -128,3 +128,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# static files location when DEBUG is True
+cdn/
+
+# media files
+media/
