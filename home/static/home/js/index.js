@@ -65,6 +65,53 @@ function hide_table() {
     }
 }
 
+/* Function to fetch values in all the cells of the table */
+function fetch_table_data() {
+    let table_data = {};
+    for (let row = 1; row <= 3; row++) {
+        for (let column = 1; column <= 3; column++) {
+            table_data[String(row) + "_" + String(column)] =
+                $("#table_input_" + String(row) + "_" + String(column) + " input[type=text]").val();
+        }
+    }
+    return table_data;
+}
+
+/* Function which prepares data and send to backend via AJAX POST request */
+function send_data_to_backend_to_create_pdf() {
+    let image_path = $("#id_image_path").val();
+    let selected_table_size = $("#id_table_sizes").val();
+    let row = selected_table_size.split(',')[0];
+    let column = selected_table_size.split(',')[1];
+    let data = {
+        'image_path': image_path,
+        'row': row,
+        'column': column,
+        'table_data': fetch_table_data(),
+    };
+    $.ajax({
+        type: 'POST',
+        url: CREATE_PDF_URL,
+        data: data,
+        cache: false,
+        success: function (res) {
+            if (res.error) {
+                display_error_message(res.error);
+                return;
+            }
+            if (res.created_pdf_link) {
+                window.location.href = res.created_pdf_link;
+            }
+            else {
+                display_error_message('Something went wrong. Please try again.');
+            }
+        },
+        error: function () {
+            display_error_message('Something went wrong. Please try again.');
+        }
+    });
+}
+
 $(document).ready(function () {
 
     /* Hide the table initially */
@@ -82,6 +129,11 @@ $(document).ready(function () {
         let row = selected_table_size.split(',')[0];
         let column = selected_table_size.split(',')[1];
         populate_table(row, column);
+    });
+
+    /* Called when Submit button is clicked */
+    $("#submit_button").on("click", function () {
+        send_data_to_backend_to_create_pdf();
     });
 
 });
