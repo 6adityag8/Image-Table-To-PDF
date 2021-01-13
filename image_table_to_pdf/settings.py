@@ -3,6 +3,7 @@ import random
 import string
 from pathlib import Path
 
+import django_heroku
 import environ
 
 # get root of the project
@@ -117,3 +118,6 @@ STATIC_ROOT = env.str('STATIC_ROOT', default=BASE_DIR / 'cdn/static/')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Added for Heroku deployment
+django_heroku.settings(locals())
