@@ -10,7 +10,18 @@ def create_pdf_file(data):
     template = get_template("pdf_template.html")
 
     # Renders the template with the context data.
-    html_string = template.render(data)
+    table_data = []
+    for row in range(1, int(data.get('row', '0')) + 1):
+        row_data = []
+        for column in range(1, int(data.get('column', '0')) + 1):
+            cell_value = data.get('table_data[{0}_{1}]'.format(str(row), str(column)), '')
+            row_data.append(cell_value)
+        table_data.append(row_data)
+    context = {
+        'image_path': data.get('image_path', ''),
+        'table_data': table_data,
+    }
+    html_string = template.render(context)
 
     # Creates the MEDIA ROOT directory if it doesn't exist
     if not os.path.exists(settings.MEDIA_ROOT):
@@ -20,6 +31,6 @@ def create_pdf_file(data):
     # Getting the path where the uploaded file will be saved
     pdf_file_path = os.path.join(settings.MEDIA_ROOT, file_name)
 
-    pdfkit.from_string(html_string, pdf_file_path)
+    pdfkit.from_string(html_string, pdf_file_path, css=os.path.join(settings.STATIC_ROOT, 'home/css/index.css'))
 
     return file_name

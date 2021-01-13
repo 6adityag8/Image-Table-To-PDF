@@ -1,7 +1,7 @@
 from django import forms
 
 TABLE_SIZE = 3
-TABLE_SIZE_CHOICES = [('', 'Select a Table Size')] + \
+TABLE_SIZE_CHOICES = [('0,0', 'Select a Table Size')] + \
                      [('{0},{1}'.format(str(row), str(column)), '{0} X {1}'.format(str(row), str(column)))
                       for row in range(1, TABLE_SIZE + 1) for column in range(1, TABLE_SIZE + 1)]
 
