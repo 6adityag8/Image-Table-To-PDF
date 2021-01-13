@@ -31,6 +31,6 @@ def create_pdf_file(data):
     # Getting the path where the uploaded file will be saved
     pdf_file_path = os.path.join(settings.MEDIA_ROOT, file_name)
 
-    pdfkit.from_string(html_string, pdf_file_path, css=os.path.join(settings.STATIC_ROOT, 'home/css/index.css'))
+    pdfkit.from_string(html_string, pdf_file_path)
 
     return file_name

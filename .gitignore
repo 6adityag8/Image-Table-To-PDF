@@ -131,6 +131,7 @@ dmypy.json
 
 # static files location when DEBUG is True
 cdn/
+staticfiles/
 
 # media files
 media/
