@@ -109,7 +109,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = env.str('STATIC_ROOT', default=BASE_DIR / 'cdn/static')
+STATIC_ROOT = env.str('STATIC_ROOT', default=BASE_DIR / 'cdn/static/')
 
 MEDIA_URL = '/media/'
 

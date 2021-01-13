@@ -1,3 +1,23 @@
 #error_message {
     color: red;
 }
+
+table, td {
+    border: 1px solid;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+}
+
+div {
+    margin-top: 0.5%;
+}
