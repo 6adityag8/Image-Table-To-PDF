@@ -13,9 +13,7 @@ ENV PYTHONUNBUFFERED 1
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
-# set project environment variables
-# grab these via Python's os.environ
-# these are 100% optional here
+# set port to '8888' to avoid conflict with the default port: '8000'
 ENV PORT=8888
 
 # Install system dependencies
@@ -31,11 +29,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 
-# install environment dependencies
-RUN pip3 install --upgrade pip
-
 # Install project dependencies
+RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
+
+# Run migrate and collect static commands
+RUN python manage.py migrate
+RUN python manage.py collectstatic
 
 EXPOSE 8888
 CMD gunicorn image_table_to_pdf.wsgi:application --bind 0.0.0.0:$PORT
