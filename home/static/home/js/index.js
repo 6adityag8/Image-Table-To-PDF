@@ -43,6 +43,7 @@ function display_error_message(error_msg) {
     let image_upload_form = $('#upload_image_form');
     let error_div = $('#error_message');
     image_upload_form[0].reset();
+    $("#id_image_path").val(null);
     error_div.html(error_msg);
     error_div.show();
 }
@@ -104,10 +105,12 @@ function send_data_to_backend_to_create_pdf() {
             }
             else {
                 display_error_message('Something went wrong. Please try again.');
+                hide_table();
             }
         },
         error: function () {
             display_error_message('Something went wrong. Please try again.');
+            hide_table();
         }
     });
 }
