@@ -1,6 +1,5 @@
 import os
-import random
-import string
+import secrets
 from pathlib import Path
 
 import environ
@@ -15,8 +14,7 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY', default=''.join(random.choices(
-    string.ascii_letters + string.digits + string.punctuation, k=50)))
+SECRET_KEY = env.str('SECRET_KEY', default=secrets.token_hex(24))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
