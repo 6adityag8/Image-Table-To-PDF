@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -110,9 +111,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = env.str('STATIC_ROOT', default=BASE_DIR / 'cdn/static/')
 
+# Added for Heroku deployment
+django_heroku.settings(locals())
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# Added for Heroku deployment
-django_heroku.settings(locals())
