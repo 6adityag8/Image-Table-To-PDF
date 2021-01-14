@@ -11,7 +11,7 @@
     {% for row in table_data %}
         <tr>
             {% for column in table_data.0 %}
-                <td>{{ table_data|index:forloop.parentloop.counter0|index:forloop.counter0 }}</td>
+                <td height="20">{{ table_data|index:forloop.parentloop.counter0|index:forloop.counter0 }}</td>
             {% endfor %}
         </tr>
     {% endfor %}
