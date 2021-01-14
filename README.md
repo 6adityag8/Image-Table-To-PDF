@@ -15,4 +15,4 @@ docker build -t image_table_to_pdf -f Dockerfile .
 <p class="has-line-data" data-line-start="17" data-line-end="18">5.Run the created docker image using the same tag name, previously used.</p>
 <pre><code class="has-line-data" data-line-start="19" data-line-end="21">docker run -it -p 8888:8888 image_table_to_pdf
 </code></pre>
-<p class="has-line-data" data-line-start="21" data-line-end="22">6.Visit <code>localhost:8888</code> in a web browser.</p>
+<p class="has-line-data" data-line-start="21" data-line-end="22">6.Visit <code>http://0.0.0.0:8888</code> in a web browser.</p>
