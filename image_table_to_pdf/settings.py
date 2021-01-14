@@ -17,10 +17,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY', default=secrets.token_hex(24))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+# Default is set to True until a server is setup for serving static files
+DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='localhost').split()
+# Please specify comma-separated string in .env file
+ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='*').split()
 
 # Application definition
 

@@ -6,9 +6,9 @@
     <title>Image to PDF</title>
     <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
     <script>
-        let IMAGE_UPLOAD_URL = {% url 'upload_image' %};
-        let CREATE_PDF_URL = {% url 'create_pdf_api' %};
-        let MEDIA_URL = {{ MEDIA_URL }};
+        let IMAGE_UPLOAD_URL = "{% url 'upload_image' %}";
+        let CREATE_PDF_URL = "{% url 'create_pdf_api' %}";
+        let MEDIA_URL = "{{ MEDIA_URL }}";
     </script>
 </head>
 <body>

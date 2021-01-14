@@ -43,6 +43,8 @@ function display_error_message(error_msg) {
     let image_upload_form = $('#upload_image_form');
     let error_div = $('#error_message');
     image_upload_form[0].reset();
+    hide_table();
+    $("#id_image_path").val(null);
     error_div.html(error_msg);
     error_div.show();
 }
