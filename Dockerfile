@@ -9,6 +9,7 @@ WORKDIR /app
 ADD . /app/
 
 # set default environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
@@ -34,8 +35,8 @@ RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Run migrate and collect static commands
-RUN python manage.py migrate
-RUN python manage.py collectstatic
+RUN python manage.py migrate --no-input
+RUN python manage.py collectstatic --no-input
 
 EXPOSE 8888
-CMD gunicorn image_table_to_pdf.wsgi:application --bind 0.0.0.0:$PORT
+CMD python manage.py runserver 0.0.0.0:$PORT
