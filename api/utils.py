@@ -6,21 +6,30 @@ from django.template.loader import get_template
 
 
 def create_pdf_file(data):
-    # creating html file as string to covert it into pdf using pdfkit package.
+    """
+    Generates a PDF file using pdfkit package. It creates a HTML string and then convert it into PDF
+    :param data: Querydict which contains the table & image data
+    :return: file name of the generated pdf
+    """
+    # Get the PDF template
     template = get_template("pdf_template.html")
 
-    # Renders the template with the context data.
+    # Creating a list of lists of the table data
     table_data = []
     for row in range(1, int(data.get('row', '0')) + 1):
         row_data = []
         for column in range(1, int(data.get('column', '0')) + 1):
+            # Fetching the corresponding cell's value
             cell_value = data.get('table_data[{0}_{1}]'.format(str(row), str(column)), '')
             row_data.append(cell_value)
         table_data.append(row_data)
+
+    # Renders the template with the context data
     context = {
         'image_path': data.get('image_path', ''),
         'table_data': table_data,
     }
+    # getting html file as string
     html_string = template.render(context)
 
     # Creates the MEDIA ROOT directory if it doesn't exist
